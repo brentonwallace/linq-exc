@@ -6,12 +6,25 @@ namespace linq_exc
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+           
+         // FOllowing methods called QUERY SYNTAX
+            var startingDeck = from s in Suits()
+                               from r in Ranks()
+                               select new { Suit = s, Rank = r }; 
+            foreach (var card in startingDeck)
+            {
+                Console.WriteLine(card);
+            }
 
 
+            // Same query written in METHOD SYNTAX
+            /*  var startingDeck = Suits().SelectMany(suit => Ranks().Select(rank => new { Suit = suit, Rank = rank }));      */
 
-
+            var top = startingDeck.Take(26);
+            var bottom = startingDeck.Skip(26);
 
 
         }
