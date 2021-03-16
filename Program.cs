@@ -25,9 +25,35 @@ namespace linq_exc
 
             var top = startingDeck.Take(26);
             var bottom = startingDeck.Skip(26);
+            var shuffle = top.InterleaveSequenceWith(bottom);
+
+            foreach (var card in shuffle)
+            {
+                Console.WriteLine(card);
+            }
+
+            var times = 0;
+            shuffle = startingDeck;
+
+            do
+            {
+                shuffle = shuffle.Take(26).InterleaveSequenceWith(shuffle.Skip(26));
+                foreach (var card in shuffle)
+                {
+                    Console.WriteLine(card);
+                }
+                Console.WriteLine();
+                times++;
+            } while (!startingDeck.SequenceEqual(shuffle));
+
+            Console.WriteLine(times);
+
+
 
 
         }
+
+
 
 
 
